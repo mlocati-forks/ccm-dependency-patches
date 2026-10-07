@@ -24,7 +24,7 @@ If you want to patch a composer package named `<vendor>/<package>` at version `1
        "Description of the patch": "<vendor>/<package>/name-of-the-patch-file.patch"
    },
    ```
-3. if the patch fixes a security advisory, add its ID to the `audit`.`ignore` example of the [README.md](README.md) file, and list the patched version in its "Security advisories" section.
+3. if the patch fixes a security advisory, add its ID to the `audit`.`ignore` setting of the `composer.json` of Concrete CMS once the new version of `dependency-patches` is released (see [README.md](README.md#security-advisories) for the format of the reason).
 4. check that all the patches can be applied, by running `php ./.github/workflows/tests.php` (it requires `composer` and GNU `patch`; on Windows, run it from Git Bash)
 5. to test the patch locally, you can edit the `composer.json` file of your concrete5/Concrete CMS installation, adding:
    - In the `require` section:

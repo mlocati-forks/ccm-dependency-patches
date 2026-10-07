@@ -27,13 +27,7 @@ If you use a composer-based concrete5/Concrete CMS installation, the `composer.j
     },
     "audit": {
       "ignore": {
-        "PKSA-w9tt-7782-78jx": "league/flysystem CVE-2026-102601: fixed by concretecms/dependency-patches",
-        "PKSA-kvv6-36cr-fkzb": "twig/twig CVE-2026-46627: fixed by concretecms/dependency-patches",
-        "PKSA-sjvz-tbbr-vwth": "twig/twig CVE-2026-46628: fixed by concretecms/dependency-patches",
-        "PKSA-h8hf-ytnd-5t9q": "twig/twig CVE-2026-46633: fixed by concretecms/dependency-patches",
-        "PKSA-21g2-dzjv-sky5": "twig/twig CVE-2026-46634: fixed by concretecms/dependency-patches",
-        "PKSA-3mcc-k66d-pydb": "twig/twig CVE-2026-46638: fixed by concretecms/dependency-patches",
-        "PKSA-wwb1-81rc-pd65": "twig/twig CVE-2026-47730: fixed by concretecms/dependency-patches"
+        "PKSA-w9tt-7782-78jx": "league/flysystem CVE-2026-102601: fixed by concretecms/dependency-patches"
       }
     }
   },
@@ -59,11 +53,11 @@ Some of the patches fix security vulnerabilities in packages that are no longer 
 
 Composer knows nothing about patches: it still considers the patched versions as vulnerable, so `composer audit` reports them and `composer update` may refuse to install them.
 
-The `audit`.`ignore` setting listed above tells Composer to ignore the advisories fixed by `dependency-patches`: it must be in the `composer.json` file of your project (it doesn't work in the `composer.json` files of dependencies).
+The `audit`.`ignore` setting tells Composer which advisories to ignore: it must be in the `composer.json` file of your project (it doesn't work in the `composer.json` files of dependencies).
 
-The patches are applied only to `league/flysystem` 1.1.10 and `twig/twig` 3.11.3: don't ignore these advisories if you install other versions of those packages.
+Keep it aligned with the [`composer.json` of Concrete CMS](https://github.com/concretecms/concretecms/blob/HEAD/composer.json): the reason next to each advisory says whether it's fixed by `dependency-patches` or ignored because Concrete CMS doesn't use the affected feature (for example the Twig sandbox). In the second case, ignore it only if your project doesn't use that feature either.
 
-Please remark that `twig/twig` 3.11.3 (the last version that supports PHP versions older than 8.1) is affected by other advisories that are not fixed by `dependency-patches`: Composer keeps reporting them.
+The patches are applied only to the package versions listed in the `composer.json` of this repository: don't ignore these advisories if you install other versions of those packages.
 
 
 ## How to add a new patch
